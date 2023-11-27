@@ -6,7 +6,12 @@ const path = require('path');
 const router = express.Router();
 
 router.get('/' , (req,res)=>{
-   res.sendFile(path.join(__dirname , '..' , 'views' , 'shop.html'));
+   console.log(products);
+   res.render('shop' , {
+      pageTitle:'Shop',
+      products:products,
+      path:'/'
+   });
 });
 
 exports.router = router

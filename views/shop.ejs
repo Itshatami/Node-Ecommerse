@@ -1,0 +1,24 @@
+<%- include('partials/head') %>
+  </head>
+  <body>
+    <%- include('partials/navigation') %>
+    <main>
+      <div>
+        <h1>List Of Products</h1>
+      </div>
+      <% if (products.length <1) { %>
+        <div>
+          <h4>there is no product..</h4>
+        </div>
+      <% }else{ %>
+        <div>
+            <ul>
+              <% for(let product of products){ %>
+                <li><%= product.title %></li>
+             <% }; %>
+               </ul>
+          </div>
+      <% } %>
+    </main>
+
+<%- include('partials/end') %>

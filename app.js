@@ -7,13 +7,17 @@ const shopRoutes = require('./routes/shop')
 
 const app = express();
 
-app.use(bodyParser.urlencoded({extended:true}));
+app.set('view engine' , 'ejs')
+app.set('views' , 'views')
+
+app.use(express.urlencoded({extended:true}));
+app.use(express.static(path.join(__dirname , 'public')))
 
 app.use('/admin' , adminRoutes.routes);
 app.use(shopRoutes.router)
 
 app.use((req,res,next)=>{
-   res.sendFile(path.join(__dirname  , 'views' , '404.html'))
+   res.render('404' , {pageTitle: '404'})
 });
 
 app.listen(8000 , console.log('listening on 8000'));
