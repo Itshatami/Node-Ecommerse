@@ -8,18 +8,11 @@ exports.getAddProduct = (req,res)=>{
 }
 exports.getAdminProducts = (req,res)=>{
    Product.fetchAll((products)=>{
-      res.render('/admin/products' , {
-         pageTitle : 'Admin-Products',
+      res.render('admin/products' , {
+         pageTitle : 'Admin Products',
          path:'/admin/products',
          products: products
       })
-   })
-}
-
-exports.getCart = (req,res)=>{
-   res.render('/cart' , {
-      pageTitle: 'Cart',
-      path: 'cart'
    })
 }
 
@@ -29,13 +22,3 @@ exports.postAddProduct = (req,res)=>{
    res.redirect('/')
 }
 
-exports.getProducts = (req,res)=>{
-   Product.fetchAll((products)=>{
-      res.render('shop/product-list' , {
-         pageTitle:'Shop',
-         products:products,
-         path:'/'
-      });
-   });
-   
-}

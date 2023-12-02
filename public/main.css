@@ -21,6 +21,6 @@ a{
    list-style: none;
    display: flex;
 }
-.list li:first-child{
+.list li{
    margin-right: 1rem;
 }
