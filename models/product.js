@@ -13,8 +13,11 @@ const getFileFromProducts = cd =>{
    })
 }
 exports.Product = class Product {
-   constructor(title){
+   constructor(title , imageUrl , price, discription){
       this.title = title
+      this.imageUrl = imageUrl
+      this.price = price
+      this.discription = discription
    }
 
    save(){
