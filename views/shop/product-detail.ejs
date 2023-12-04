@@ -2,4 +2,14 @@
   </head>
   <body>
     <%- include('../partials/navigation') %>
+    <main class="text-center">
+      <h1 class="mb-2"><%= product.title %></h1>
+      <img src="<%= product.imageUrl %>" class="mb-2" alt="<%= product.title %>">
+      <p class="text-lead mb-2"><%= product.discription %></p>
+      <h5 class="mb-2 text-success"><%= product.price %></h5>
+      <form action="/cart" method="post">
+        <input type="hidden" name="productId" value="<%= product.id %>">
+        <button class="btn btn-outline-info" type="submit">Add to Cart</button>
+      </form>
+    </main>
 <%- include('../partials/end') %>
