@@ -2,4 +2,34 @@
   </head>
   <body>
     <%- include('../partials/navigation') %>
+    <main>
+      <form action="/admin/<% if(editing){%>edit-product<% }else{%>add-product<% } %>" method="post" class="p-2 border">
+        <!-- <div class="mb-2">
+          <label for="id" class="form-label">ID:</label>
+          <input type="text" name="id" id="id" class="form-control">
+        </div> -->
+        <div class="mb-2">
+          <label for="title" class="form-label">Name:</label>
+          <input type="text" name="title" id="title" class="form-control" value="<% if(editing){ %><%= product.title %><% } %>">
+        </div>
+        <div class="mb-2">
+          <label for="imageUrl" class="form-label">ImageUrl:</label>
+          <input type="text" name="imageUrl" id="imageUrl" class="form-control" value="<% if(editing){ %><%= product.imageUrl %><% } %>">
+        </div>
+        <div class="mb-2">
+          <label for="price" class="form-label">Price:</label>
+          <input type="number" name="price" id="price" class="form-control" value="<% if(editing){ %><%= product.price %><% } %>">
+        </div>
+        <div class="mb-2">
+          <label for="description" class="form-label">Description:</label>
+          <textarea name="description" id="description" rows="5" class="form-control">
+            <% if(editing){ %><%= product.description %><% } %>
+          </textarea>
+        </div>
+        <% if(editing) { %>
+        <input type="hidden" name="productId" value="<%=product.id%>">
+        <% } %>
+        <button class="btn btn-success" type="submit"><% if(editing) { %>Edit Product <% }else{%>Add Product<% } %></button>
+      </form>
+    </main>
 <%- include('../partials/end') %>

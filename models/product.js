@@ -13,20 +13,30 @@ const getFileFromProducts = cd =>{
    })
 }
 exports.Product = class Product {
-   constructor(title , imageUrl , price, discription){
+   constructor(id ,title , imageUrl , price, description){
+      this.id = id;
       this.title = title
       this.imageUrl = imageUrl
       this.price = price
-      this.discription = discription
+      this.description = description
    }
 
    save(){
-      this.id = Math.random().toString()
-         getFileFromProducts(products =>{
+      getFileFromProducts(products =>{
+         if(this.id){
+            const existingProductIndex = products.findIndex(p => p.id === this.id);
+            const updatedProduct = [...products];
+            updatedProduct[existingProductIndex] = this; 
+            fs.writeFile(p , JSON.stringify(updatedProduct) , (err)=>{
+               console.log(err);
+            })
+         }else{
+            this.id = Math.random().toString()
             products.push(this)
             fs.writeFile(p , JSON.stringify(products) , (err)=>{
                console.log(err);
             })
+         }
          });
    }
 
