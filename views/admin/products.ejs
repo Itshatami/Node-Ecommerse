@@ -24,6 +24,7 @@
             <div class="d-flex justify-content-center">
               <a href="/admin/edit-product/<%= product.id %>?edit=true" class="btn btn-outline-warning me-2">Edit</a>
             <form action="/admin/delete-product" method="post">
+              <input type="hidden" name="productId" value="<%= product.id %>">
               <button type="submit" class="btn btn-outline-danger">Delete</button>
             </form>
             </div>

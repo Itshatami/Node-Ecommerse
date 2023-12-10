@@ -25,7 +25,7 @@ exports.getProduct = (req,res)=>{
    const productId = req.params.productId
    Product.findById(productId , product => {
       res.render('shop/product-detail' , {
-         pageTitle:product.title,
+         pageTitle:'item',
          path:'/products',
          product: product
       })
@@ -33,9 +33,13 @@ exports.getProduct = (req,res)=>{
 }
 
 exports.getCart = (req,res)=>{
-   res.render('shop/cart' , {
-      pageTitle: 'Cart',
-      path: '/cart'
+   Cart.getCart(cart =>{
+      Product.fetchAll(products=>{
+         res.render('shop/cart' , {
+            pageTitle: 'Cart',
+            path: '/cart'
+         })
+      })
    })
 }
 
