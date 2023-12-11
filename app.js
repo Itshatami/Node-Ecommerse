@@ -5,6 +5,13 @@ const adminRoutes = require('./routes/admin')
 const shopRoutes = require('./routes/shop')
 const errorController = require('./controllers/error')
 
+const db = require('./util/db')
+db.execute('SELECT * FROM products').then(res=>{
+   console.log(res);
+}).catch(err => {
+   console.log(err);
+})
+
 const app = express();
 
 app.set('view engine' , 'ejs')

@@ -34,19 +34,20 @@ exports.postEditProduct = (req,res)=>{
    const updatedPrice = req.body.price
    const updatedDescription = req.body.description
    const updatedProduct = new Product(productId , updatedTitle , updatedImageUrl , updatedPrice , updatedDescription)
-   console.log(updatedProduct);
    updatedProduct.save();
    res.redirect('/admin/products')
 }
 
 exports.postAddProduct = (req,res)=>{
    const title = req.body.title;
-   const imageUrl = req.body.imageUrl;
    const price = req.body.price;
+   const imageUrl = req.body.imageUrl;
    const description = req.body.description;
-   const product = new Product(null ,title , imageUrl , price , description)
-   product.save()
-   res.redirect('/')
+   const product = new Product(title, price  , imageUrl , description)
+   product.save().then(()=>{
+      res.redirect('/')
+   })
+   .catch(err => console.log(err))
 }
 
 exports.getAdminProducts = (req,res)=>{
