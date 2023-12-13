@@ -5,12 +5,7 @@ const adminRoutes = require('./routes/admin')
 const shopRoutes = require('./routes/shop')
 const errorController = require('./controllers/error')
 
-const db = require('./util/db')
-db.execute('SELECT * FROM products').then(res=>{
-   console.log(res);
-}).catch(err => {
-   console.log(err);
-})
+const sequelize = require('./util/db')
 
 const app = express();
 
@@ -25,4 +20,10 @@ app.use(shopRoutes)
 
 app.use(errorController.get404);
 
-app.listen(8000 , console.log('listening on 8000'));
+sequelize.sync()
+.then(res=>{
+   // console.log(res);
+   app.listen(8000 , console.log('listening on 8000'));
+}).catch(err=>{
+   console.log(err);
+})
