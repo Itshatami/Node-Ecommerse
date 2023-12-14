@@ -56,13 +56,13 @@ exports.postAddProduct = (req,res)=>{
 }
 
 exports.getAdminProducts = (req,res)=>{
-   Product.fetchAll((products)=>{
+   Product.findAll().then(products=>{
       res.render('admin/products' , {
          pageTitle : 'Admin Products',
          path:'/admin/products',
          products: products
       })
-   })
+   }).catch(err=>console.log(err))
 }
 
 exports.postDeleteProduct = (req,res)=>{
